@@ -79,7 +79,7 @@ hello world
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/python-keylogger.git
+git clone https://github.com/gandharva33/python-keylogger.git
 cd python-keylogger
 ```
 
