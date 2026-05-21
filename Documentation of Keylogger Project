@@ -1,0 +1,279 @@
+Python Keylogger Documentation
+In this task the problem statement is:
+
+“Create a Python program that records keyboard keystrokes and stores them in a log file using the pynput library. The program should continuously monitor key presses, save them into a text file, and stop safely when the user presses the Esc key.”
+
+What is a Keylogger?
+
+Imagine you are typing on your keyboard, and a program quietly keeps track of every key you press.
+
+For example:
+
+You press: H
+Then: E
+Then: L
+Then: L
+Then: O
+
+The program records:
+
+HELLO
+
+This type of program is called a Keylogger.
+
+A keylogger listens to keyboard activity and stores the pressed keys into a file.
+
+Real Example
+
+Suppose the user types:
+
+Hello World
+
+The program stores:
+
+Hello World
+
+If the user presses:
+
+Space → " "
+Enter → "\n"
+Backspace → "[backspace]"
+
+the program records those too.
+
+Why Learn About Keyloggers?
+
+Keyloggers are commonly studied in:
+
+Cybersecurity
+Ethical hacking
+Event-driven programming
+Monitoring systems
+Keyboard automation
+
+⚠️ Important:
+Keyloggers should only be used for educational purposes and on systems where you have permission.
+
+What We Need to Build
+
+A program that:
+
+Detects keyboard key presses
+Records every pressed key
+Saves the keys into a text file
+Handles special keys like:
+Space
+Enter
+Backspace
+Stops safely when Esc is pressed
+Stores session start and end time
+Step 2: Break the Problem into Small Sub-Tasks
+Sub-Task 1: Import Required Libraries
+
+We need:
+
+from pynput import keyboard
+from datetime import datetime
+
+Why?
+
+pynput → listens to keyboard events
+datetime → records timestamps
+Sub-Task 2: Create a Log File
+
+We need a file where all keystrokes will be stored.
+
+Example:
+
+LOG_FILE = "keystroke_log.txt"
+
+This creates a text file named:
+
+keystroke_log.txt
+Sub-Task 3: Record Session Start Time
+
+When the program starts, we save the current date and time.
+
+Example:
+
+--- Session Started: 2026-05-21 20:15:10 ---
+
+This helps track when logging began.
+
+Sub-Task 4: Detect Key Presses
+
+We create a function:
+
+def on_press(key):
+
+This function runs every time a key is pressed.
+
+The program:
+
+Detects the key
+Prints it on screen
+Saves it into the log file
+Sub-Task 5: Handle Special Keys
+
+Some keys are not normal characters.
+
+Example:
+
+Space
+Enter
+Backspace
+Shift
+Ctrl
+
+We must handle them separately.
+
+Example:
+
+if key == keyboard.Key.space:
+    log_char = ' '
+Sub-Task 6: Stop the Program Safely
+
+We use another function:
+
+def on_release(key):
+
+When the user presses:
+
+Esc
+
+the program stops listening.
+
+Sub-Task 7: Start the Keyboard Listener
+
+We use:
+
+with keyboard.Listener(...) as listener:
+
+This continuously monitors keyboard activity.
+
+Step 3: Writing the Actual Code
+
+In the:
+
+keylogger.py
+
+file.
+
+Step 4: Explain What the Output Means and Why It Is Correct
+Understanding the Output
+
+When the program runs:
+
+⚠️ Keylogger running. For authorized/educational use only. Press Esc to stop.
+
+Suppose the user types:
+
+Hello
+
+The log file becomes:
+
+--- Session Started: 2026-05-21 20:15:10 ---
+Hello
+--- Session Ended: 2026-05-21 20:16:42 ---
+Why Is This Correct?
+
+The program listens to every keyboard event.
+
+Example:
+
+Key Pressed	Stored Output
+H	H
+e	e
+l	l
+l	l
+o	o
+Space	" "
+Enter	New Line
+Backspace	[backspace]
+
+So the output correctly matches the user's keyboard input.
+
+Why the Code Works
+1. Keyboard Listener
+keyboard.Listener
+
+This continuously watches for key presses and releases.
+
+Without it, the program cannot detect keyboard activity.
+
+2. on_press() Function
+
+Runs whenever a key is pressed.
+
+Example:
+
+def on_press(key):
+
+It records:
+
+Letters
+Numbers
+Symbols
+Special keys
+3. on_release() Function
+
+Runs whenever a key is released.
+
+Used to stop the program when:
+
+Esc
+
+is pressed.
+
+4. File Handling
+
+We use:
+
+with open(LOG_FILE, 'a') as f:
+
+This:
+
+Opens the file
+Adds new data
+Prevents old logs from being deleted
+5. Timestamps
+datetime.now()
+
+Records the exact time the session started and ended.
+
+Complete Example Session
+========================================
+      PYTHON KEYLOGGER
+========================================
+
+⚠️ Keylogger running.
+For authorized/educational use only.
+Press Esc to stop.
+
+Key pressed: H
+Key pressed: e
+Key pressed: l
+Key pressed: l
+Key pressed: o
+
+Keylogger stopped.
+Example Log File
+--- Session Started: 2026-05-21 20:15:10 ---
+Hello World
+[backspace]
+--- Session Ended: 2026-05-21 20:16:42 ---
+Important Ethical Note
+
+This project is only for:
+
+✅ Educational learning
+✅ Cybersecurity labs
+✅ Authorized systems
+✅ Event listener practice
+
+This project must NOT be used for:
+
+❌ Stealing passwords
+❌ Unauthorized spying
+❌ Monitoring users without consent
+❌ Malicious activities
