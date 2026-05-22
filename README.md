@@ -73,7 +73,6 @@ hello world
 ```
 
 ---
-
 # 🚀 Installation
 
 ## 1️⃣ Clone the Repository
@@ -100,7 +99,6 @@ python keylogger.py
 ```
 
 ---
-
 # 🧠 How It Works
 
 The program uses:
